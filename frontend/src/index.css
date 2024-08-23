@@ -377,3 +377,10 @@ a.action_container:link {
   height: 14px;
   cursor: pointer;
 }
+.spinner {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
