@@ -5,10 +5,14 @@ import { IoBagAddOutline } from "react-icons/io5";
 
 const HomeItem = ({ item }) => {
   const dispatch = useDispatch();
-  useSelector;
+  const bagItems = useSelector((store) => store.bag);
+  const elementFound = bagItems.indexOf(item.id) >= 0;
 
   const handleAddToBag = () => {
     dispatch(bagActions.addToBAg(item.id));
+  };
+  const handleRemove = () => {
+    dispatch(bagActions.removeFromBAg(item.id));
   };
 
   return (
@@ -24,16 +28,19 @@ const HomeItem = ({ item }) => {
         <span className="original-price">Rs {item.original_price}</span>
         <span className="discount">({item.discount_percentage}% OFF)</span>
       </div>
-      <button type="button" className="btn-add-bag" onClick={handleAddToBag}>
-        <IoBagAddOutline /> Add to Bag
-      </button>
-      <button
-        type="button"
-        className="btn-add-bag btn btn-danger"
-        onClick={handleAddToBag}
-      >
-        <MdDelete /> Remove
-      </button>
+      {elementFound ? (
+        <button
+          type="button"
+          className="btn-add-bag btn btn-danger"
+          onClick={handleRemove}
+        >
+          <MdDelete /> Remove
+        </button>
+      ) : (
+        <button type="button" className="btn-add-bag" onClick={handleAddToBag}>
+          <IoBagAddOutline /> Add to Bag
+        </button>
+      )}
     </div>
   );
 };

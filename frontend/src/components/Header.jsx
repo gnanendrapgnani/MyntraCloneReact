@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const bag = useSelector((store) => store.bag);
-  console.log("bags is :", bag);
 
   return (
     <>
